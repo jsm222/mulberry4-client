@@ -32,7 +32,7 @@ D = .so
 # Name of target object files:
 #
 PROGRAM = mulberry$E
-LIBS = ../Libraries/CICalendar/libCICalendar$A ../Libraries/vCard/libvCard$A ../Libraries/XMLLib/libCICalendar$A
+LIBS = ../Libraries/CICalendar/libCICalendar$A ../Libraries/vCard/libvCard$A ../Libraries/XMLLib/libCICalendar$A ../Libraries/JX/lib/libjx-2_5_0$A ../Libraries/JX/lib/libjcore-2_5_0$A
 OBJS = \
 	Sources/xmul$O \
 	../Sources_Common/os_dep$O \
@@ -914,18 +914,17 @@ CXXWARN = @CXXWARN@
 COPT = @COPT@
 CDEBUG = -g
 CWARN = @CWARN@
-CPPFLAGS = @CPPFLAGS@ $(J_RAW_SYSTEM_STUFF) -IIncludes -I../Sources_Common -IResources -I../Sources_Common/Utilities/ -IHelp -I$(JX_ROOT)/include/jcore -I$(JX_ROOT)/include/jx -I$(JX_ROOT)/include/jximage -I$(JX_ROOT)/ACE/ACE_wrappers $(J_INCLUDE_FREETYPE)
+CPPFLAGS = @CPPFLAGS@ $(J_RAW_SYSTEM_STUFF) -IIncludes -I../Sources_Common -IResources -I../Sources_Common/Utilities/ -IHelp -I$(JX_ROOT)/include/jcore -I$(JX_ROOT)/include/jx -I$(JX_ROOT)/include/jximage -I $(J_INCLUDE_FREETYPE)
 CXXFLAGS = @CXXFLAGS@ -include Sources/Mulberry_Prefix.h $(CPPFLAGS) $(CXXOPT) $(CXXDEBUG) $(CXXWARN)
 CFLAGS = @CFLAGS@ -include stdbool.h $(CPPFLAGS) $(COPT) $(CDEBUG) $(CWARN)
 LINK_STATIC = @LINK_STATIC@
 LINK_DYNAMIC = @LINK_DYNAMIC@
 JXLINK = $(JX_LDFLAGS) \
-	$(LINK_STATIC)  -ljx-$(JX_LIB_VERSION) -ljcore-$(JX_LIB_VERSION) \
-	-lACE-$(ACE_LIB_VERSION) $(LINK_DYNAMIC) \
+	-L /usr/local/lib -lACE $(LINK_DYNAMIC) \
 	$(J_X11_LIBS) @LDAPLIB@ @SSLLIB@ \
 	$(LINK_STATIC) $(STL_LIB) $(LINK_DYNAMIC)
 
-LDFLAGS =  $(JXLINK) @LDFLAGS@ -lpthread -ldl
+LDFLAGS =  $(JXLINK) @LDFLAGS@ -lpthread -lACE -lpcre
 #
 # Automatic stuff, should not be changed:
 #
@@ -957,7 +956,7 @@ distclean:
 	-rm -f config.cache config.status config.log Makefile
 
 $(LIBS):
-	$(MAKE) $(MAKEFLAGS) -E ../Libraries
+	$(MAKE) $(MAKEFLAGS)  ../Libraries
 
 #
 # Automatic targets and rules:
