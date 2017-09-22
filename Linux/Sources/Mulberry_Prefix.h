@@ -17,6 +17,7 @@
 
 #ifndef _MULBERRY_PREFIX_H
 #define _MULBERRY_PREFIX_H
+#include <assert.h>
 
 //The various OS's
 #define __win32_os 95
