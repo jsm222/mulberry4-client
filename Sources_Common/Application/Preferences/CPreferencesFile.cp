@@ -808,7 +808,7 @@ bool CPreferencesFile::VerifyRead(bool is_local, bool write_back, bool* pending_
 
 	NumVersion vers_app = CMulberryApp::GetVersionNumber();
 	NumVersion vers_prefs;
-	*(long*) &vers_prefs = 0;
+	
 
 	// Do choice of multiple sets if reached during startup phase and remote set
 	if (mRemoteFile && !CMulberryApp::sApp->LoadedPrefs())
