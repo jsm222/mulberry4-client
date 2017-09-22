@@ -19,13 +19,19 @@
 
 #ifndef __CLOCALMESSAGE__MULBERRY__
 #define __CLOCALMESSAGE__MULBERRY__
-
+#ifndef MULLBERRY_MAX_SIZE_T
+#ifdef __amd64__
+#define MULLBERRY_MAX_SIZE_T 0xFFFFFFFFFFFFFFFF
+#else if defined(__i386__)
+#define MULLBERRY_MAX_SIZE_T 0xFFFFFFFF
+#endif
+#endif
 #include "CMessage.h"
 #include "CEnvelope.h"
 
 #include "templs.h"
 
-const unsigned long cStreamAttachmentIndexStart = 0xFFFFFFFF;
+const unsigned long cStreamAttachmentIndexStart = MULBERRY_MAX_SIZE_T;
 
 // Classes
 
