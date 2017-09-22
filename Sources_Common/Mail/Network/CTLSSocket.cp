@@ -296,7 +296,7 @@ void CTLSSocket::TLSStartConnection()
 				m_ctx = ::SSL_CTX_new(::SSLv23_client_method());
 				break;
 			case 2:
-				m_ctx = ::SSL_CTX_new(::SSLv3_client_method());
+				m_ctx = ::SSL_CTX_new(::SSLv23_client_method());
 				break;
 			case 3:
 				m_ctx = ::SSL_CTX_new(::TLSv1_client_method());
@@ -415,7 +415,7 @@ void CTLSSocket::TLSStartConnection()
 		mCertIssuer = str;
 
 		// Get cipher in use
-		SSL_CIPHER* cipher = ::SSL_get_current_cipher(m_tls);
+		const SSL_CIPHER* cipher = ::SSL_get_current_cipher(m_tls);
 		
 		char cipher_desc[256];
 		::SSL_CIPHER_description(cipher, cipher_desc, 256);
