@@ -149,10 +149,6 @@ AC_SUBST(PROGRAM_DIR)
 # Checks for libs which we will need (fail if not found)
 # ---------------------------------------------------------------------------
 
-AC_CHECK_HEADER([esd.h],
-	,
-        AC_MSG_ERROR(esd.h not found - mulberry requires esd.)
-)
 
 CPPFLAGS_ORG="$CPPFLAGS"
 CPPFLAGS="$CXXFLAGS $CPPFLAGS"
@@ -261,7 +257,7 @@ case $host_os in
      PROC_NAME="`uname -p`"
      ;;
   *)
-     SO_LDFLAGS="-lresolv"
+     SO_LDFLAGS=""
      PROC_NAME="`uname -m`"
      ;;
 esac
@@ -270,8 +266,6 @@ REL_NAME="`uname -r`"
 AC_SUBST(OS_NAME)
 AC_SUBST(REL_NAME)
 AC_SUBST(PROC_NAME)
-AC_CHECK_LIB(resolv, main, LDFLAGS="$LDFLAGS -lresolv")
-
 AC_SUBST(LDFLAGS)
 AC_SUBST(SO_LDFLAGS)
 
