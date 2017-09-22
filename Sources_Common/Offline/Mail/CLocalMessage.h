@@ -19,11 +19,11 @@
 
 #ifndef __CLOCALMESSAGE__MULBERRY__
 #define __CLOCALMESSAGE__MULBERRY__
-#ifndef MULLBERRY_MAX_SIZE_T
+#ifndef MULBERRY_MAX_SIZE_T
 #ifdef __amd64__
-#define MULLBERRY_MAX_SIZE_T 0xFFFFFFFFFFFFFFFF
+#define MULBERRY_MAX_SIZE_T 0xFFFFFFFFFFFFFFFF
 #else if defined(__i386__)
-#define MULLBERRY_MAX_SIZE_T 0xFFFFFFFF
+#define MULBERRY_MAX_SIZE_T 0xFFFFFFFF
 #endif
 #endif
 #include "CMessage.h"
