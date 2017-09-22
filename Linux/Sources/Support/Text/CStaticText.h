@@ -15,15 +15,15 @@
 */
 
 
-#ifndef _H_CStaticText
-#define _H_CStaticText
 #ifndef MULLBERRY_MAX_SIZE_T
 #ifdef __amd64__
 #define MULLBERRY_MAX_SIZE_T 0xFFFFFFFFFFFFFFFF
-#else if defined(__i386__)
+#elif defined(__i386__)
 #define MULLBERRY_MAX_SIZE_T 0xFFFFFFFF
 #endif
 #endif
+#ifndef _H_CStaticText
+#define _H_CStaticText
 #include <JXTEBase16.h>
 
 class cdstring;
