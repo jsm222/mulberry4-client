@@ -21,9 +21,9 @@ MAKEMAKE = makemake
 LDFLAGS := -shared
 
 ifeq (${OSTYPE},solaris)
-LOADLIBES := -nodefaultlibs -lc -lm -lgcc -lresolv
+LOADLIBES := -nodefaultlibs -lc -lm -lgcc -lpcre
 else
-LOADLIBES := -lresolv
+LOADLIBES := 
 endif
 
 makeall: all

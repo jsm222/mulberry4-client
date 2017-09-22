@@ -48,7 +48,7 @@
 #elif __dest_os == __linux_os
 #  if defined (sparc) || defined(powerpc)
 #   define big_endian
-#  elif defined(__i386__)
+#  elif defined(__i386__) || defined(__amd64__)
 #   undef big_endian
 #  else
 #   error unknown endian

@@ -47,8 +47,9 @@ OBJS = \
 #
 # Main target and file dependencies:
 #
-
-all: $(LIBRARY)$D
+line64mac$O:
+	${CC} -fPIC -c -o sources/line64mac.o sources/line64mac.c -I /usr/local/include
+all: line64mac$O $(LIBRARY)$D
 
 #
 # Flags passed to the compiler

@@ -33,6 +33,12 @@ D = .so
 # Name of target object files:
 #
 LIBRARY = PluginLib
+md5:
+	${CC} -fPIC ${CFLAGS} -c -o ../CRAM-MD5/sources/md5/md5c$O ../CRAM-MD5/sources/md5/md5c.c
+
+all:md5 $(LIBRARY)$D $(LIBRARY)$A
+
+
 OBJS = \
 	../../Sources_Common/i18n/Charsets/Converters/OneByte/CASCII_plugin$O \
 	../../Sources_Common/Utilities/CCharSpecials_plugin$O \
@@ -60,7 +66,8 @@ OBJS = \
 # Main target and file dependencies:
 #
 
-all: $(LIBRARY)$A
+$(LIBRARY)$A: $(OBJS)
+$(LIBRARY)$D: $(OBJS)
 
 #
 # Flags passed to the compiler
@@ -96,8 +103,7 @@ ifdef PRELINK
 endif
 	$(AR) crs $@ $^
 
-$(LIBRARY)$D: $(OBJS) 
-	$(CXX) -shared -o $@ $^ $(SO_LDFLAGS)
+
 
 install:
 	@echo "Nothing to install for PluginLibrary"

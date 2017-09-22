@@ -3,14 +3,14 @@
 O = .o
 
 # Plugins to build
-BUILD_PLUGINS := PluginLibrary CRAM-MD5 DIGEST-MD5 GSSAPI  \
+BUILD_PLUGINS := PluginLibrary CRAM-MD5 DIGEST-MD5  \
 			CommunicatorAdbkIO Eudora4AdbkIO EudoraAdbkIO NetscapeAdbkIO \
 			PineAdbkIO QuickmailAdbkIO vCardAdbkIO \
-			ISpell ASpell \
+			ISpell  \
 			GPG SMIME SSL
 
 # Plugins not built
-NO_BUILD_PLUGINS := PGP QuickmailProAdbkIO POPPASSD URLPASSD
+NO_BUILD_PLUGINS := PGP QuickmailProAdbkIO POPPASSD URLPASSD GSSAPI
 
 .PHONY: all install uninstall clean distclean
 

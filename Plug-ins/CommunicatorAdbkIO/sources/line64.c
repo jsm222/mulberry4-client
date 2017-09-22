@@ -40,18 +40,16 @@
 
 int ldif_debug = 0;
 
-<<<<<<< line64.c
+
 #include "ldap_log.h"
 #include "lber_pvt.h"
-=======
 //#include "ldap_log.h"
 #define LDAP_DEBUG_PARSE	0x0800
 #define LDAP_DEBUG_NONE		0x8000
 #define LDAP_DEBUG_ANY		-1
 
 //#include "lber_pvt.h"
-#include <lber_types.h>
->>>>>>> 1.1.4.1
+
 #include "ldif.h"
 
 #define RIGHT2			0x03

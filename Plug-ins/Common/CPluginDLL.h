@@ -96,7 +96,7 @@ public:
 	struct SPluginInfo
 	{
 		const char* mName;						// Name of plug-in
-		long mVersion;							// Version number of plugin (as per Mac OS 'vers' rsrc)
+		int mVersion;							// Version number of plugin (as per Mac OS 'vers' rsrc)
 		EPluginType mType;						// Plug-in type
 		const char* mManufacturer;				// Manufacturer
 		const char* mDescription;				// Textual description
@@ -107,7 +107,7 @@ public:
 	// Actual plug-in class
 
 	CPluginDLL();
-	virtual ~CPluginDLL();
+	~CPluginDLL();
 	
 	// Entry point
 	virtual long Entry(long code, void* data, long refCon);		// DLL entry point and dispatch

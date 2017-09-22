@@ -18,7 +18,7 @@ endif
 	$(AR) crs $@ $^
 
 $(LIBRARY)$D: $(OBJS) 
-	$(CXX) -shared -o $@ $^ $(SO_LDFLAGS)
+	$(CXX) -fPIC -shared -o $@ $^ $(SO_LDFLAGS)
 
 install: all
 	$(INSTALL) -d $(LIBDIR)/Plug-ins

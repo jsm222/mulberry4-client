@@ -6,7 +6,7 @@
 # $Date$
 # $Revision$
 #
-
+	
 #
 # Installation dirs...
 #
@@ -31,6 +31,8 @@ D = .so
 #
 # Name of target object files:
 #
+sources/md5/md5c.o:
+	${CC} -fPIC -c -o sources/md5/md5c.o sources/md5/md5c.c
 LIBRARY = CRAMMD5Plugin
 OBJS = \
 	../Common/CAuthPluginDLL$O \
@@ -48,8 +50,12 @@ OBJS = \
 #
 # Main target and file dependencies:
 #
+all: md5c $(LIBRARY)$D
+$(LIBRARY)$D:
+	${CC}  ${OBJS}
+md5c: 
+	${CC} -fPIC -c -o sources/md5/md5c.o sources/md5/md5c.c 
 
-all: $(LIBRARY)$D
 
 #
 # Flags passed to the compiler
@@ -60,15 +66,16 @@ JX_MAKE_INCLUDE_DIR = $(JX_ROOT)/include/make
 include $(JX_MAKE_INCLUDE_DIR)/jx_constants
 include $(JX_MAKE_INCLUDE_DIR)/jx_config
 CXXDEBUG = -g
-CXXOPT = @CXXOPT@
-CXXWARN = @CXXWARN@
-CPPFLAGS = @CPPFLAGS@ $(J_RAW_SYSTEM_STUFF) -D_REENTRANT -I../Common -I../../Sources_Common/Utilities -I./sources -I./sources/md5
-CXXFLAGS = -include ../Common/Plugin_Prefix_Linux.h @CXXFLAGS@ $(CPPFLAGS) $(CXXOPT) $(CXXDEBUG) $(CXXWARN)
+CXXOPT = -fPIC @CXXOPT@
+CXXWARN = -fPIC @CXXWARN@
+CPPFLAGS = -fPIC @CPPFLAGS@ $(J_RAW_SYSTEM_STUFF) -D_REENTRANT -I../Common -I../../Sources_Common/Utilities -I./sources -I./sources/md5
+CXXFLAGS = -fPIC -include ../Common/Plugin_Prefix_Linux.h @CXXFLAGS@ $(CPPFLAGS) $(CXXOPT) $(CXXDEBUG) $(CXXWARN)
 COPT = @COPT@
 CDEBUG = -g
 CWARN = @CWARN@
-CFLAGS = @CFLAGS@ -include ../Common/Plugin_Prefix_Linux.h $(CPPFLAGS) $(COPT) $(CDEBUG) $(CWARN)
-SO_LDFLAGS =  @SO_LDFLAGS@
+CFLAGS = @CFLAGS@ -fPIC -include ../Common/Plugin_Prefix_Linux.h $(CPPFLAGS) $(COPT) $(CDEBUG) $(CWARN)
+
+SO_LDFLAGS =  -L/usr/local/lib -lcxxrt -lACE -lpcre -shared
 
 include ../include/pluginrules.mak
 

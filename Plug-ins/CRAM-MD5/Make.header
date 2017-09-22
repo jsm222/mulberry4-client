@@ -11,7 +11,7 @@
 
 include ../include/nostl.mak
 
-BIN = .obj
+SOURCES = .obj
 
 CINCS = \
 -I../Common \
@@ -24,14 +24,14 @@ VPATH := sources:\
 		../../Sources_Common/Utilities:\
 		../../Sources_Common/Mail/Charsets:\
 		../../Sources_Common/Mail/URLs:\
-		../CRAM-MD5/sources/md5
+		../CRAM-MD5/sources/md5c
 		
 $.${BIN}/%.o %.o: %.cp
 	@ echo "    ---- Compiling $< (C++)"
 	 $(CPP) $(CFLAGS) -c -o $@ $<
 
 ${BIN}/hmac-md5.o: ../CRAM-MD5/sources/md5/hmac-md5.c ../CRAM-MD5/sources/md5/hmac-md5.h
-	 $(CC) -c -o $@ $<
+	 $(CC) -fPIC -c -o $@ $<
 
 ${BIN}/md5c.o: ../CRAM-MD5/sources/md5/md5c.c ../CRAM-MD5/sources/md5/md5.h
-	 $(CC) -c -o $@ $<
+	 $(CC) -fPIC -c -o $@ $<

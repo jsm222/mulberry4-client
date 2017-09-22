@@ -19,7 +19,7 @@
 // Common to all plugins
 //long cPluginVersion =				0x04002001;				// v4.0d1
 //long cPluginVersion =				0x04004007;				// v4.0a7
-long cPluginVersion =				0x04096001;				// v4.0.9b1
+long cPluginVersion =				0x04102001;				// v4.1.0d1
 //long cPluginVersion =				0x04088000;				// v4.0.8
 const char* cPluginManufacturer =	"mulberrymail.com";
 

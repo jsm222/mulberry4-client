@@ -30,7 +30,7 @@
 // 17-Nov-1997: Created initial header and implementation.
 // 17-Jun-1998: Modified to allow multiple copies of plugin for multithreaded oepration.
 //
-
+#define __dest_os __linux_os
 #if __dest_os == __win32_os
 #undef Boolean
 #endif
@@ -70,7 +70,7 @@ long MulberryPluginEntry(long code, void* data, long refCon)
 }
 }
 #if defined(__GNUC__)
-#pragma GCC visibility pop
+#pragma GCC visibility pop(default)
 #elif defined(__VCPP__)
 #else
 #pragma export off
