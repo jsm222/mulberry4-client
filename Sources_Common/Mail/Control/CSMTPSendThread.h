@@ -19,7 +19,8 @@
 
 #ifndef __CSMTPSENDTHREAD__MULBERRY__
 #define __CSMTPSENDTHREAD__MULBERRY__
-
+#include <ace/Thread.h>
+#include <ace/Thread_Manager.h>
 #include "cdmutex.h"
 
 #if __dest_os == __mac_os || __dest_os == __mac_os_x
@@ -40,7 +41,7 @@ class CSMTPSendThread
 #elif __dest_os == __linux_os
 	typedef ACE_hthread_t cthread;
 #else
-#error __dest_os
+	typedef ACE_hthread_t cthread;
 #endif
 
 public:
@@ -54,7 +55,7 @@ public:
 #elif __dest_os == __linux_os
 	static void* Thread(void* param);
 #else
-#error __dest_os
+	static void* Thread(void* param);
 #endif
 
 	void RunThread();
