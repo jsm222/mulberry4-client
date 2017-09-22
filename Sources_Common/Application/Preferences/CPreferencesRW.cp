@@ -647,10 +647,10 @@ bool CPreferences::ReadFromMap(COptionsMap* theMap,
 #endif
 
 	// Check version
-	mUpdateVers = (*(long*) &vers != *(long*) &vers_app);
+	mUpdateVers = ((*(NumVersion*) &vers).majorRev != (*(NumVersion*) &vers_app).majorRev);
 
 	// Special if no vers present then assume this is the current version
-	if (*(long*) &vers == 0)
+	if (*(long long*) &vers == 0)
 		vers = vers_app;
 
 	// Copy for conversion
