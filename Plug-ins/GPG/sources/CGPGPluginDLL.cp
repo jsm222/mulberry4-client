@@ -981,9 +981,11 @@ long CGPGPluginDLL::CallGPG(cdstrvect& args, const char* passphrase, bool binary
 #if __dest_os == __mac_os_x
 	out.push_back("/usr/local/bin/gpg");
 #else
-	out.push_back(cGPG);
+	out.push_back("/usr/local/bin/gpg");
 #endif
 #endif
+        if(passphrase) 
+            out.push_back("--pinentry-mode=loopback");
 	out.push_back("--batch");
 	//out.push_back("--no-options");
 	out.push_back("--yes");
@@ -1044,7 +1046,7 @@ long CGPGPluginDLL::CallGPG(cdstrvect& args, const char* passphrase, bool binary
 				// Write passphrase into the pipe ready for gpg to read it
 				::write (passfd[1], passphrase, ::strlen(passphrase));
 				::write (passfd[1], "\n", 1);
-
+    
 				// Make sure gpg knows what the pipe's fd is
 				out.push_back("--passphrase-fd");
 				out.push_back(cdstring((unsigned long) passfd[0]));
@@ -1140,10 +1142,10 @@ long CGPGPluginDLL::CallGPG(cdstrvect& args, const char* passphrase, bool binary
 		cdstring logged;
  		for(unsigned int i = 0; i < out.size(); i++)
  			*p++ = out[i].c_str_mod();
- 		for(unsigned int i = 0; i < args.size(); i++)
+                for(unsigned int i = 0; i < args.size(); i++)
  			*p++ = args[i].c_str_mod();
  		*p = NULL;
- 
+                
 		// Execute it
 		::execvp(argv[0], argv);
 
@@ -1716,7 +1718,7 @@ long CGPGPluginDLL::GetPassphraseForFile(const char* in_path, char* passphrase, 
 	// Map signing keyids to names
 	if (mData->mSignatureKeys.size())
 		LookupKeys(false, mData->mSignatureKeys, signedBy, true, true);
-
+                
 	// Map encryption keyids to names
 	if (mData->mEncryptionKeys.size())
 	{
@@ -1754,12 +1756,13 @@ void CGPGPluginDLL::LookupKeys(bool secret, const cdstrvect& keyids, cdstrvect& 
 	// List public keys with matching keyids
 	cdstrvect args;
 	args.push_back(secret ? "--list-secret-keys" : "--list-keys");
+        args.push_back("--keyid-format=short");    
 	for(cdstrvect::const_iterator iter = keyids.begin(); iter != keyids.end(); iter++)
 		args.push_back(*iter);
 
 	// Ignore errors
 	CallGPG(args, NULL, true, true, true);
-
+        
 	// Map each keyid found in the PGP data to a name to pass back
 	for(cdstrvect::const_iterator iter1 = keyids.begin(); iter1 != keyids.end(); iter1++)
 	{
@@ -1785,7 +1788,7 @@ void CGPGPluginDLL::LookupKeys(bool secret, const cdstrvect& keyids, cdstrvect& 
 					break;
 			}
 		}
-		
+		 
 		// Only add keys that are found if requested
 		else if (add_missing)
 		{
@@ -1974,8 +1977,15 @@ long CGPGPluginDLL::ProcessKeyListOutput(cdstring& output)
 			name.trimspace();
 
 			// Skip if not a valid name
-			if (!name.empty() && (name[(cdstring::size_type)0] != '['))
-			{			
+			if (!name.empty()) // && (name[(cdstring::size_type)0] != '['))
+			{	
+                            const char* pos = strchr(name.c_str(),']');
+                            if(pos) 
+                            {
+                                pos+=2;
+                                name=cdstring(pos);
+                            }
+   
 				// Cache current name (before we add the key id)
 				mData->mKeyIDMap["current"].push_back(name);
 				
@@ -1995,7 +2005,7 @@ long CGPGPluginDLL::ProcessKeyListOutput(cdstring& output)
 			
 			// Get current names
 			cdstrvect names = mData->mKeyIDMap["current"];
-
+                        
 			// Add id/names to map
 			mData->mKeyIDMap[id] = names;
 		}
