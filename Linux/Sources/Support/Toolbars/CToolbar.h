@@ -16,10 +16,17 @@
 
 
 // Header for CToolbar class
-
+#ifndef MULLBERRY_MAX_SIZE_T
+#ifdef __amd64__
+#define MULLBERRY_MAX_SIZE_T 0xFFFFFFFFFFFFFFFF
+#elif defined(__i386__)
+#define MULLBERRY_MAX_SIZE_T 0xFFFFFFFF
+#else 
+#error "unknown arch"
+#endif
+#endif
 #ifndef __CTOOLBAR__MULBERRY__
 #define __CTOOLBAR__MULBERRY__
-
 #include <JXWidgetSet.h>
 #include "CBroadcaster.h"
 #include "CListener.h"

@@ -17,7 +17,13 @@
 
 #ifndef _H_CStaticText
 #define _H_CStaticText
-
+#ifndef MULLBERRY_MAX_SIZE_T
+#ifdef __amd64__
+#define MULLBERRY_MAX_SIZE_T 0xFFFFFFFFFFFFFFFF
+#else if defined(__i386__)
+#define MULLBERRY_MAX_SIZE_T 0xFFFFFFFF
+#endif
+#endif
 #include <JXTEBase16.h>
 
 class cdstring;
@@ -53,7 +59,7 @@ public:
 		{ mTransparent = transparent; }
 
 			void	SetText(const cdstring& txt);				// UTF8 in
-			void	SetText(const char* txt, size_t size = 0xFFFFFFFF);	// UTF8 in
+			void	SetText(const char* txt, size_t size = MULLBERRY_MAX_SIZE_T);	// UTF8 in
 			void	SetText(const cdustring& txt);				// UTF16 in
 			void	SetNumber(long num);						// Number in
 

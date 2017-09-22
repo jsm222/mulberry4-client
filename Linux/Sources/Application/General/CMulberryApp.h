@@ -40,7 +40,7 @@ class CRemotePrefsSet;
 class JXDialogDirector;
 class cdstring;
 class CMulberryMDIServer;
-
+#define SIGPWR SIGINT
 struct HFont
 {
 	std::string name_;

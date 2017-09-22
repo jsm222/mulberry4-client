@@ -18,6 +18,8 @@
 #define __CTHREADPAUSER__MULBERRY__
 
 #include <ace/Synch.h>
+#include <ace/Thread_Mutex.h>
+#include <ace/Guard_T.h>
 
 class CThreadPauser
 {

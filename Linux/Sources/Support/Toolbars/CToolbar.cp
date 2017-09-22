@@ -103,7 +103,7 @@ CToolbar::CToolbar(JXContainer* enclosure,
 	mContextItem = NULL;
 	mHighlighter = NULL;
 	mContextAddItem = 0;
-	mDragIndex = 0xFFFFFFFF;
+	mDragIndex = MULLBERRY_MAX_SIZE_T;
 	
 	sToolbars.push_back(this);
 }

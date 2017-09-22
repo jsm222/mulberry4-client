@@ -28,6 +28,13 @@
 
 #include "cdstring.h"
 #include "cdustring.h"
+#ifndef MULLBERRY_MAX_SIZE_T
+#ifdef __amd64__
+#define MULLBERRY_MAX_SIZE_T 0xFFFFFFFFFFFFFFFF
+#elif defined(__i386__)
+#define MULLBERRY_MAX_SIZE_T 0xFFFFFFFF
+#endif
+#endif
 
 // Classes
 class SFontInfo;
@@ -91,9 +98,9 @@ public:
 			void	SetText(const cdustring& all);						// UTF16 in
 
 			void	InsertUTF8(const cdstring& txt);							// Insert unstyled utf8 at selection
-			void	InsertUTF8(const char* txt, size_t len = 0xFFFFFFFF);		// Insert unstyled utf8 at selection
+			void	InsertUTF8(const char* txt, size_t len = MULLBERRY_MAX_SIZE_T);		// Insert unstyled utf8 at selection
 			void	InsertText(const cdustring& txt);							// Insert unstyled utf16 at selection
-			void	InsertText(const unichar_t* utxt, size_t len = 0xFFFFFFFF);	// Insert unstyled utf16 at selection
+			void	InsertText(const unichar_t* utxt, size_t len = MULLBERRY_MAX_SIZE_T);	// Insert unstyled utf16 at selection
 
 			void	GetText(cdstring& all) const;						// UTF8 out
 		cdstring	GetText() const;									// UTF8 out

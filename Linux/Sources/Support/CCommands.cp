@@ -843,11 +843,10 @@ static SCommandMap sCmdMap[] =
 unsigned long CCommand::CommandToCmd(const char* cmdname)
 {
 	SCommandMap* map = sCmdMap;
-	unsigned long comp1 = *reinterpret_cast<const unsigned long*>(cmdname);
+	
 	while(map->title)
 	{
-		unsigned long comp2 = *reinterpret_cast<const unsigned long*>(map->title);
-		if (comp1 == comp2)
+		
 		{
 			if (!::strcmp(cmdname, map->title))
 				return map->cmd;

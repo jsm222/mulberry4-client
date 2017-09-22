@@ -50,7 +50,9 @@ NumVersion CMulberryApp::GetVersionNumber()
 	//NumVersion dummy = {0x04, 0x00, 0x40, 0x09};	// v4.0a9
 	//NumVersion dummy = {0x04, 0x00, 0x60, 0x04};	// v4.0b4
 	//NumVersion dummy = {0x04, 0x08, 0x80, 0x00};	// v4.0.8
-	dummy.whole = 0x04104001;	// v4.1a1
+	//dummy.whole = 0x04012001;	
+        dummy.whole = 0x04102001;            
+	dummy.parts.stage=developStage;
 	return dummy.parts;
 }
 
