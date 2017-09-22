@@ -31,7 +31,7 @@
 // 16-Nov-1997: Created initial header and implementation.
 // 14-Jan-1998: Combined adbk & mbox import & export into single IO plugin.
 //
-
+#define __dest_os  __linux_os
 #ifndef __CPLUGIN__MULBERRY__
 #define __CPLUGIN__MULBERRY__
 
