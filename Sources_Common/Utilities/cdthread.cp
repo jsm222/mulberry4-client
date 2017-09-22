@@ -60,7 +60,7 @@ cdthread::~cdthread()
 }
 
 // Get current thread id
-int cdthread::current_tid()
+pthread* cdthread::current_tid()
 {
 #if __dest_os == __mac_os || __dest_os == __mac_os_x
 	unsigned long this_tid = 0;
@@ -68,10 +68,9 @@ int cdthread::current_tid()
 #elif __dest_os == __win32_os
 	int this_tid = ::GetCurrentThreadId();
 #elif __dest_os == __linux_os
-	int this_tid = ACE_Thread::self();
+	return ACE_Thread::self();
 #endif
 
-	return this_tid;
 }
 
 // Thread entry point

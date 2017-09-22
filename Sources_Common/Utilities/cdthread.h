@@ -43,7 +43,7 @@ public:
 	cdthread();
 	virtual ~cdthread();
 
-	static int current_tid();					// Get current thread id
+	static pthread* current_tid();					// Get current thread id
 
 	void SetRepeating(bool repeating)
 		{ mRepeating = repeating; }
