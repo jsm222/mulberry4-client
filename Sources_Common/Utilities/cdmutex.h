@@ -22,8 +22,9 @@
 
 #if __dest_os == __mac_os || __dest_os == __mac_os_x || __dest_os == __mac_os || __dest_os == __mac_os_x_x
 #include <Threads.h>
-#elif __dest_os == __linux_os
+#else 
 #include <ace/Synch.h>
+#include <ace/Thread.h>
 #include <ace/OS.h>
 #include <vector>
 #endif
