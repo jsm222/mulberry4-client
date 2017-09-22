@@ -988,7 +988,7 @@ const char cHDR_UACOMMENT_CPU[] = "SPARC";
 #elif defined(__PPC__)
 const char cHDR_UACOMMENT_CPU[] = "PPC";
 #else
-#error __dest_os
+const char cHDR_UACOMMENT_CPU[] = "x86";
 #endif
 #else
 #error __dest_os
