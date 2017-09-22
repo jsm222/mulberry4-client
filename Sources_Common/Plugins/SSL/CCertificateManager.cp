@@ -56,7 +56,7 @@
 
 #include "diriterator.h"
 #include "cdfstream.h"
-
+#include <openssl/asn1.h>
 #include <openssl/evp.h>
 #include <openssl/pkcs12.h>
 #include <openssl/x509v3.h>
@@ -85,6 +85,7 @@ const char* cPEMExtension = ".pem";
 #define FORMAT_NETSCAPE 4
 #define FORMAT_PKCS12   5
 #define FORMAT_SMIME    6
+
 
 #define NETSCAPE_CERT_HDR	"certificate"
 
@@ -575,7 +576,7 @@ bool CCertificateManager::ImportCertificateFile(CCertificateManager::ECertificat
 			NSSL::StSSLObject<PKCS12> p12(::d2i_PKCS12_bio(cert.get(), NULL));
 			NSSL::StSSLObject<X509> cert;
 			NSSL::StSSLObject<EVP_PKEY> pkey;
-			NSSL::StSSLObject<STACK_OF(X509), X509> ca(::sk_X509_new_null());
+			NSSL::StSSLObject<STACK_OF(X509), X509> ca(sk_X509_new_null());
 
 			// If importing to personal certs, then get the pkey passphrase
 			bool personal = (type == ePersonalCertificates);
@@ -608,7 +609,7 @@ bool CCertificateManager::ImportCertificateFile(CCertificateManager::ECertificat
 			xcert.reset(::d2i_X509_bio(cert.get(), NULL));
 		}
 
-		else if (format == FORMAT_NETSCAPE)
+		/*else if (format == FORMAT_NETSCAPE)
 		{
 			// Need crlf converter for text file
 			::BIO_push(bcrlf.get(), cert.get());
@@ -640,7 +641,7 @@ bool CCertificateManager::ImportCertificateFile(CCertificateManager::ECertificat
 			const unsigned char* op = p;
 
 			// First load the header
-			NSSL::StSSLObject<ASN1_HEADER> ah(::d2i_ASN1_HEADER(NULL, &p, (long)size));
+			NSSL::StSSLObject<ASN1_HEADER> ah(d2i_ASN1_HEADER(NULL, &p, (long)size));
 			if (ah.get() == NULL)
 			{
 				CLOG_LOGTHROW(CGeneralException, -1L);
@@ -666,7 +667,7 @@ bool CCertificateManager::ImportCertificateFile(CCertificateManager::ECertificat
 
 			xcert.reset((X509 *)ah->data);
 			ah->data = NULL;
-		}
+		}*/
 
 		// Do actual certificate import if one is left
 		if (xcert.get() != NULL)
@@ -1107,7 +1108,7 @@ STACK_OF(X509)* CCertificateManager::GetCerts(const char* key, ECertificateType 
 		return NULL;
 	}
 
-	STACK_OF(EVP_PKEY)* result = sk_X509_new_null();
+	auto result = sk_X509_new_null();
 	
 	// Add each matching pkey to the stack
 	for(CCertificateStoreList::const_iterator iter1 = store->begin(); iter1 != store->end(); iter1++)
