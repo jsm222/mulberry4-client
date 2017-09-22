@@ -27,6 +27,7 @@ all_paths="../Sources/Application \
 
 # clear out old link directory
 \rm -rf Includes/*
+mkdir -p Includes
 cd Includes
 
 # get list of header files
