@@ -796,7 +796,7 @@ void CMailControl::SpendTime(bool force_tickle, bool do_checks)
 			{
 				CLOG_LOGCATCH(...);
 
-				// Éand do nothing
+				// ï¿½and do nothing
 			}
 		}
 	}
@@ -1751,10 +1751,10 @@ void CMailControl::RemoveBusyDialog()
 void CMailControl::StartBusy()
 {
 	// Check if any nested before
-	if (!sBlockCount && CMulberryApp::sApp)
+	if (!sBlockCount && dynamic_cast<CMulberryApp*>(CMulberryApp::sApp))
 	{
 		// None nested so get current pause state
-		sWasBlocked = CMulberryApp::sApp->IsPaused();
+		sWasBlocked = (dynamic_cast<CMulberryApp*>(CMulberryApp::sApp))->IsPaused();
 
 		// If not already paused, pause it
 		if (sWasBlocked)
@@ -1844,7 +1844,7 @@ bool CMailControl::ProcessBusy(const CBusyContext* busy, bool allow_cancel)
 	{
 		CLOG_LOGCATCH(...);
 
-		// Éand do nothing
+		// ï¿½and do nothing
 	}
 
 	return cancel;
