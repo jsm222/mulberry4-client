@@ -1,0 +1,12 @@
+[submodule "Libraries/CICalendar"]
+	path = Libraries/CICalendar
+	url = https://github.com/mulberry-mail/CICalendar
+[submodule "Libraries/XMLLib"]
+	path = Libraries/XMLLib
+	url = https://github.com/mulberry-mail/XMLLib
+[submodule "Libraries/vCard"]
+	path = Libraries/vCard
+	url = https://github.com/mulberry-mail/vCard
+[submodule "Libraries/JX"]
+	path = Libraries/JX
+	url = https://github.com/mulberry-mail/JX
