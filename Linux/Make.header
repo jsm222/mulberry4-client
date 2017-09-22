@@ -10,7 +10,6 @@
 # compiler flags ------------------------------
 
 JX_ROOT = ../Libraries/JX
-ACE_ROOT = ${JX_ROOT}/ACE/ACE_wrappers
 export JXLAYOUTDIR = ${JX_ROOT}/programs/jxlayout
 
 SSL_INC = -I/usr/include/openssl
@@ -42,7 +41,6 @@ JX_MAKE_INCLUDE_DIR = ${JX_ROOT}/include/make
 JX_INC = -I${JX_ROOT}/include/jcore \
 			-I${JX_ROOT}/include/jx \
 			-I${JX_ROOT}/include/jximage \
-			-I${ACE_ROOT} \
 			${J_INCLUDE_FREETYPE}
 JX_LDFLAGS = -L${JX_ROOT}/lib -L${ACE_ROOT}/ace
 
