@@ -36,9 +36,8 @@
 #include "CPlugin.h"
 
 #include "CPreferenceValue.h"
-
 #include <string.h>
-
+#define __dest_os __linux_os
 #if __dest_os == __mac_os || __dest_os == __mac_os_x
 // Resourcses
 const	ResIDT		STRx_Spell = 20101;
@@ -105,7 +104,7 @@ public:
 	ESuggestions	mSuggestLevel;
 	char	mDictionaryName[256];
 
-			CSpellPreferencesDLL();
+	CSpellPreferencesDLL();
 	virtual ~CSpellPreferencesDLL();
 	CSpellPreferencesDLL& operator=(CSpellPreferences& copy);
 };

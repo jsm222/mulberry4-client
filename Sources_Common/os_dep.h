@@ -16,7 +16,7 @@
 
 
 // Header for common OS specific definitions
-
+#define __dest_os __linux_os
 #ifndef __OS_DEP__MULBERRY__
 #define __OS_DEP__MULBERRY__
 
@@ -43,8 +43,10 @@
 #   define big_endian
 #  elif defined(__i386__)
 #   undef big_endian
-#  else
-#   error unknown endian
+#  elif defined(__amd64__)
+#  undef big_endian
+# else
+#error unkown endian
 #  endif
 
 #else

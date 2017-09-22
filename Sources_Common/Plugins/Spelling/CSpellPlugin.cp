@@ -118,7 +118,9 @@ CSpellPreferences::CSpellPreferences()
 CSpellPreferences::~CSpellPreferences()
 {
 }
-
+CSpellPreferencesDLL::~CSpellPreferencesDLL()
+{
+}
 CSpellPreferencesDLL& CSpellPreferencesDLL::operator=(CSpellPreferences& copy)
 {
 	mIgnoreCapitalised = copy.mIgnoreCapitalised.GetValue();

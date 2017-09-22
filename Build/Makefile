@@ -9,10 +9,10 @@
 #
 # Installation dirs...
 #
-prefix = /usr
+prefix = ~
 DESTDIR = 
-LIBDIR = $(DESTDIR)$(prefix)/lib/mulberry
-HELPDIR = $(DESTDIR)$(prefix)/share/doc/mulberry
+LIBDIR = $(DESTDIR)$(prefix)/.mulberry
+HELPDIR = $(DESTDIR)$(prefix)/.mulberry
 
 INSTALL = /usr/bin/install -c
 
